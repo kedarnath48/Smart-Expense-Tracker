@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Expense Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Smart Expense Tracker</h1>
+
+    <!-- Stats Section -->
+    <div class="stats-section">
+      <div class="stat-item">
+        <div class="stat-value" id="total-amount">₹0</div>
+        <div>Total Amount</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="expense-count">0</div>
+        <div>Total Expenses</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-value" id="avg-amount">₹0</div>
+        <div>Average</div>
+      </div>
+    </div>
+
+    <!-- AI Insights Dashboard -->
+    <div class="ai-dashboard" id="ai-dashboard">
+      <div class="ai-insight-card">
+        <h3>🧠 AI Spending Insights</h3>
+        <div class="ai-insight-text" id="ai-insight-text">Add expenses to get AI insights!</div>
+        <button class="refresh-insights-btn" onclick="refreshAIInsights()">🔄 Refresh Insights</button>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <button class="quick-action-btn" onclick="addQuickExpense('Food', 100)">Quick: Food ₹100</button>
+      <button class="quick-action-btn" onclick="addQuickExpense('Transport', 50)">Quick: Transport ₹50</button>
+      <button class="quick-action-btn" onclick="addQuickExpense('Bills', 500)">Quick: Bills ₹500</button>
+      <button class="quick-action-btn ai-smart-btn" onclick="smartCompleteForm()">🤖 Smart Complete</button>
+      <button class="quick-action-btn" onclick="clearAllData()">Clear All Data</button>
+    </div>
+
+    <!-- Add Expense Form -->
+    <h2 id="form-title">Add Expense</h2>
+    
+    <!-- AI Insights Section -->
+    <div class="ai-section" id="ai-section" style="display:none;">
+      <div class="ai-card">
+        <span class="ai-icon">🤖</span>
+        <div class="ai-content">
+          <div class="ai-prediction" id="ai-prediction">AI analyzing...</div>
+          <div class="ai-confidence" id="ai-confidence"></div>
+        </div>
+        <button type="button" class="ai-apply-btn" id="ai-apply-btn" onclick="applyAISuggestion()">Apply</button>
+      </div>
+    </div>
+    
+    <form id="expense-form">
+      <input type="hidden" id="expense-id">
+      <div class="input-group">
+        <input type="text" id="description" placeholder="Description (AI will suggest category)" oninput="onDescriptionChange()" required>
+        <button type="button" class="ai-predict-btn" id="ai-predict-btn" onclick="handleAIPredictClick()">🤖 AI Predict</button>
+      </div>
+      <input type="text" id="category" placeholder="Category" required>
+      <input type="number" id="amount" placeholder="Amount" step="0.01" required>
+      <input type="date" id="date" required>
+      <button type="submit" id="submit-btn">Add Expense</button>
+      <button type="button" id="cancel-btn" style="display:none;" onclick="cancelEdit()">Cancel</button>
+    </form>
+
+    <!-- Search and Filter Section -->
+    <div class="search-section">
+      <h2>Search & Filter</h2>
+      <div class="filter-section">
+        <input type="text" id="search-category" placeholder="Search by category">
+        <button type="button" onclick="searchByCategory()">Search Category</button>
+        <input type="text" id="search-description" placeholder="Search description">
+        <button type="button" onclick="searchByDescription()">Search Description</button>
+        <button type="button" onclick="loadExpenses()">Show All</button>
+      </div>
+    </div>
+
+    <!-- Expenses List -->
+    <h2>Expenses</h2>
+    
+    <!-- Sort Section -->
+    <div class="sort-section">
+      <span>Sort by:</span>
+      <button class="sort-btn" onclick="sortExpenses('date')" id="sort-date">Date</button>
+      <button class="sort-btn" onclick="sortExpenses('amount')" id="sort-amount">Amount</button>
+      <button class="sort-btn" onclick="sortExpenses('category')" id="sort-category">Category</button>
+      <button class="sort-btn" onclick="toggleSortOrder()" id="sort-order">↓ Desc</button>
+    </div>
+    
+    <div id="loading" class="loading" style="display:none;">Loading expenses...</div>
+    <ul id="expense-list"></ul>
+  <!-- Edit Modal -->
+  <div id="editModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeEditModal()">&times;</span>
+      <h2>Edit Expense</h2>
+      <form id="edit-form">
+        <input type="hidden" id="edit-id">
+        <input type="text" id="edit-category" placeholder="Category" required>
+        <input type="number" id="edit-amount" placeholder="Amount" step="0.01" required>
+        <input type="text" id="edit-description" placeholder="Description">
+        <input type="date" id="edit-date" required>
+        <button type="submit">Update Expense</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
