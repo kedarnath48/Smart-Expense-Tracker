@@ -3,7 +3,6 @@
  * SMART EXPENSE TRACKER - CSS Styles
  * ===================================================================
  * Modern, responsive styles for the expense tracking application
- * Author: Vibecode Team
  * Version: 1.0.0
  * ===================================================================
  */
@@ -1003,3 +1002,4 @@ select:focus {
     --shadow-heavy: 0 0 10px rgba(0,0,0,0.3);
   }
 }
+
