@@ -3,7 +3,6 @@
  * SMART EXPENSE TRACKER - JavaScript Application
  * ===================================================================
  * A modern expense tracking application with full CRUD functionality
- * Author: Vibecode Team
  * Version: 2.0.0 - Updated August 12, 2025
  * Features: AI-powered categorization, Hotel category support
  * ===================================================================
@@ -1398,4 +1397,5 @@ function applyAISuggestion() {
   // This function can be used if you have an AI suggestion card
   console.log('Applying AI suggestion...');
 }
+
 
